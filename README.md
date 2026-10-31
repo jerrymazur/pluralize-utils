@@ -27,3 +27,10 @@ There is also a known asymmetry with `-fe` words: `pluralize("knife")` correctly
 - `pluralize(word: str) -> str`
 - `singularize(word: str) -> str`
 - `is_plural(word: str) -> bool`
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
